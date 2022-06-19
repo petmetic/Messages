@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current weather</title>
+</head>
+<body>
+<h1>Current Weather in ... </h1>
+<p>
+<form>
+    <label>
+        Input City name:
+        <input type='text' name="city_name" value="Ljubljana, Slovenia">
+    </label>
+</form>
+<p>Location: {{ data.name }}</p>
+<p>Weather description: {{ data.weather[0].description }}</p>
+<p>Current temperature: {{ data.main.temp }} °C</p>
+</p>
+</body>
+</html>
