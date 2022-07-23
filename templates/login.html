@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h2>Login</h2>
+<form action="/add_message" method="post">
+    <input name="username" required placeholder="Write your name: ">
+    <br>
+    <br>
+
+    <textarea name="text" required placeholder="Enter your message: " rows="5"></textarea>
+    <br>
+    <button type="Submit">Submit</button>
+</form>
+
+{% for message in messages.items %}
+<p>
+    <strong>{{ message.author }}:</strong>
+    {{message.text}}
+</p>
+
+{% endfor %}
+
+{% for page_num in range(messages.pages) %}
+<a href="?page={{page_num+1}}">Page {{page_num+1}}</a>
+
+{% endfor %}
+
+
+{% endblock content %}

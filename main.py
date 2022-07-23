@@ -17,9 +17,12 @@ class Message(db.Model):
 
 db.create_all()
 
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
 
-@app.route('/', methods=["GET", "POST"])
-def index():
+@app.route('/message', methods=["GET", "POST"])
+def message():
     page = request.args.get("page")
 
     if not page:
@@ -29,7 +32,7 @@ def index():
 
     messages = paginate(query=messages_query, page=int(page), page_size=5)
 
-    return render_template("index.html", messages=messages)
+    return render_template("message.html", messages=messages)
 
 
 @app.route('/add_message', methods=["POST"])
@@ -45,12 +48,13 @@ def add_message():
 
 @app.route('/weather', methods=['GET'])
 def weather():
-    q = request.args.get("city_name")
+    q = request.args.get("city_name", "Ljubljana, Slovenia")
     unit = "metric"
 
     url = f"https://api.openweathermap.org/data/2.5/weather"
     print(api_key)
-    data = requests.get(url=url, params={'q': q, 'units': unit, 'api_key': api_key, })
+    data = requests.get(url=url, params={'q': q, 'units': unit, 'appid': api_key})
+    print(data.request.url)
     print(data.json())
     return render_template("weather.html", data=data.json())
 

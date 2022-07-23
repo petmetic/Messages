@@ -3,3 +3,4 @@ gunicorn==19.9.0
 sqla-wrapper==4.200628
 sqlalchemy-pagination
 psycopg2-binary
+requests_oauthlib
